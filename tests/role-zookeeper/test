@@ -1,0 +1,31 @@
+#!/bin/bash
+# -*- bash -*-
+
+# Accès au DSL RoleSpec
+. "${ROLESPEC_LIB}/main"
+. "${ROLESPEC_TEST}/defaults.conf"
+
+# Configuration de l'utilisateur pour l'intégration continue'
+if [ -z "${TRAVIS}" ]; then
+  CI_USER="vagrant"
+else
+  CI_USER="${USER}"
+fi
+
+# Prérequis
+
+## Installation de la version spécifiée d'ansible
+## Voir defaults.conf
+install_ansible ${test_ansible_version}
+
+## Installation des dépendances
+[ -e requirements.yml ] && ansible-galaxy install -r requirements.yml
+
+# Tests
+
+# Test de syntaxe et test d'exécution correcte du playbook
+assert_playbook_runs -e "ci_user=$CI_USER"
+# Add -vvvv if you want it verbose
+
+# Vérification de l'idempotence du playbook
+assert_playbook_idempotent -e "ci_user=$CI_USER"

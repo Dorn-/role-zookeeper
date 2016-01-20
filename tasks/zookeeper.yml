@@ -1,0 +1,50 @@
+---
+- name: Adds zookeeper user
+  user:
+    name: zookeeper
+    home: "{{ zookeeper_install_dir }}"
+    createhome: yes
+
+- name: Checks if zookeeper is already present
+  stat:
+    path: /etc/init.d/zookeeper
+  register: __zookeeper_init
+
+- name: Gets zookeeper tarball
+  get_url:
+    url: "{{ zookeeper_download_url }}"
+    dest: "/tmp/zookeeper.tgz"
+  register: __zookeeper_downloaded
+  when: not __zookeeper_init.stat.exists
+
+- name: Untars Zookeeper
+  become: true
+  become_user: zookeeper
+  # Sorry, unarchive sucks
+  command: tar xvzf /tmp/zookeeper.tgz -C {{ zookeeper_install_dir }} --strip-components=1
+  when: __zookeeper_downloaded | changed
+  notify: Restart Zookeeper
+
+- name: Installs init script
+  template:
+    src: zookeeper.init.j2
+    dest: /etc/init.d/zookeeper
+    mode: 0770
+    owner: root
+    group: root
+  notify: Restart Zookeeper
+
+- name: Enables init script
+  service:
+    name: zookeeper
+    enabled: true
+
+- name: Adds zookeeper sysconfig
+  template:
+    src: zoo.conf.j2
+    dest: {{ zookeeper_install_dir  }}/conf/zoo.conf
+    mode: 0644
+    owner: zookeeper
+    group: zookeeper
+  notify: Restart Zookeeper
+

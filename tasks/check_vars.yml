@@ -1,0 +1,12 @@
+---
+#
+# Checking that required variables are set
+#
+# No variables are currently required
+#
+- name: Checking that required variables are set
+  fail: msg="{{ item }} is not defined"
+  when: not {{ item }}
+  with_items:
+    - zookeeper_cluster_group
+

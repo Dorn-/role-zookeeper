@@ -1,0 +1,17 @@
+---
+
+dependencies:
+  - role-java
+
+galaxy_info:
+  author: Michel Blanc
+  company: Fiducial / SIWEB
+  description: Role zookeeper
+  license: MIT
+  min_ansible_version: 1.9.4
+  platforms:
+  - name: RedHat
+    versions:
+    - all
+  categories:
+  - clustering
