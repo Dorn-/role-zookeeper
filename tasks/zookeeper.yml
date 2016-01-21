@@ -39,12 +39,33 @@
     name: zookeeper
     enabled: true
 
-- name: Adds zookeeper sysconfig
+- name: Creates log and PID dirs with proper ownership
+  file: path={{ item }} state=directory owner=zookeeper group=zookeeper
+  with_items:
+    - /var/run/zookeeper/
+    - /var/log/zookeeper/
+    - "{{ zookeeper_datadir }}"
+
+- name: Adds zookeeper config
   template:
-    src: zoo.conf.j2
-    dest: {{ zookeeper_install_dir  }}/conf/zoo.conf
+    src: zoo.cfg.j2
+    dest: "{{ zookeeper_install_dir }}/conf/zoo.cfg"
     mode: 0644
     owner: zookeeper
     group: zookeeper
+  notify: Restart Zookeeper
+
+- name: Adds zookeeper sysconfig
+  template:
+    src: zookeeper.j2
+    dest: "/etc/sysconfig/zookeeper"
+    mode: 0644
+  notify: Restart Zookeeper
+
+- name: Adds zookeeper server ID
+  template:
+    src: myid.j2
+    dest: "{{ zookeeper_datadir }}/myid"
+    mode: 0644
   notify: Restart Zookeeper
 

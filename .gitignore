@@ -1,3 +1,4 @@
 .tags
 tests/role-zookeeper/playbooks/
 .vagrant
+vagrant

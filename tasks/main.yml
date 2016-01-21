@@ -1,1 +1,2 @@
-- include: role-zookeeper.yml tags=role-zookeeper
+- include: check_vars.yml tags=zookeeper
+- include: zookeeper.yml tags=zookeeper

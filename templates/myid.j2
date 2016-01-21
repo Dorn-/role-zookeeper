@@ -1,0 +1,5 @@
+{% for hst in groups[zookeeper_cluster_group]|sort %}
+{% if hst == inventory_hostname %}
+{{ loop.index }}
+{% endif %}
+{% endfor %}

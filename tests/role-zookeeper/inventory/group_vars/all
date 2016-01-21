@@ -1,2 +1,2 @@
 
-zookeeper_cluster_group: all
+zookeeper_cluster_group: zoo

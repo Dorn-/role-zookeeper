@@ -3,6 +3,7 @@
 
 cat<<EOF
 {
-  "all": [ "placehoder_fqdn" ]
+  "all": [ "placehoder_fqdn" ],
+  "zoo": [ "placeholder_fqdn" ]
 }
 EOF
