@@ -4,12 +4,13 @@
 # Provides: zookeeper
 # Default-Start: 3 4 5
 # Default-Stop: 0 1 2 3 4 6
-# Required-Start:
+# Required-Start: $local_fs $remote_fs $network $named
+# Required-Stop: $local_fs $remote_fs $network
 #
 ## END INIT INFO
-# zookeeper:   Sarts/stops zookeeper
+# zookeeper:   Starts/stops zookeeper
 #
-# chkconfig: 345 1 99
+# chkconfig: 345 95 1
 #
 # description: zookeeper
 #
@@ -49,7 +50,7 @@ fi
 
 if [ "x$JMXDISABLE" = "x" ]
 then
-    echo "JMX enabled by default" >&2
+    # echo "JMX enabled by default" >&2
     # for some reason these two options are necessary on jdk6 on Ubuntu
     #   accord to the docs they are not necessary, but otw jconsole cannot
     #   do a local attach
@@ -134,7 +135,7 @@ stop)
     then
       echo "no zookeeper to stop (could not find file $ZOOPIDFILE)"
     else
-      $KILL -9 $(cat "$ZOOPIDFILE")
+      kill -9 $(cat "$ZOOPIDFILE")
       rm "$ZOOPIDFILE"
       echo STOPPED
     fi

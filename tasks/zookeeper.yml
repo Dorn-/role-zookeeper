@@ -5,6 +5,13 @@
     home: "{{ zookeeper_install_dir }}"
     createhome: yes
 
+- name: Adds zookeeper's bashrc
+  become: true
+  become_user: zookeeper
+  template:
+    src: bashrc.j2
+    dest: "{{ zookeeper_install_dir  }}/.bashrc"
+
 - name: Checks if zookeeper is already present
   stat:
     path: /etc/init.d/zookeeper

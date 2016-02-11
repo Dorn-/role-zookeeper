@@ -15,7 +15,7 @@ syncLimit=5
 dataDir={{ zookeeper_datadir }}
 
 # the port at which the clients will connect
-clientPort=2181
+clientPort={{ zookeeper_client_port }}
 
 # the maximum number of client connections.
 # increase this if you need to handle more clients
@@ -33,8 +33,8 @@ autopurge.snapRetainCount=3
 # Set to "0" to disable auto purge feature
 autopurge.purgeInterval=1
 
-# Server list
+# Server list for zookeeper_cluster_group {{zookeeper_cluster_group}}
 {% for hst in groups[zookeeper_cluster_group]|sort %}
-server.{{ loop.index }}={{ hostvars[hst]['ansible_default_ipv4']['address'] }}:{{ zookeeper_connection_port }}:{{ zookeeper_election_port }}
+server.{{ loop.index }}={{ hostvars[hst]['ansible_' + zookeeper_cluster_interface]['ipv4']['address'] }}:{{ zookeeper_connection_port }}:{{ zookeeper_election_port }}
 {% endfor %}
 

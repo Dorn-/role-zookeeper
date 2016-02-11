@@ -1,5 +1,6 @@
 # Ansible name containing cluster member
 zookeeper_cluster_group: false
+zookeeper_client_port: 2181
 zookeeper_connection_port: 2888
 zookeeper_election_port: 3888
 
