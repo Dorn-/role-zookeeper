@@ -1,2 +1,3 @@
 
 zookeeper_cluster_group: zoo
+zookeeper_cluster_interface: eth0

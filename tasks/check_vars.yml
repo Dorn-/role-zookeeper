@@ -9,4 +9,5 @@
   when: not {{ item }}
   with_items:
     - zookeeper_cluster_group
+    - zookeeper_cluster_interface
 
