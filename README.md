@@ -6,10 +6,10 @@
 ## Role Variables
 ### Mandatory
 - `zookeeper_cluster_group`: nom du groupe Ansible contenant les membres du cluster (default: false)
-- `zookeeper_cluster_interface`
+- `zookeeper_cluster_interface`: (default: false)
 
 ### Optional
-- `zookeeper_client_port`
+- `zookeeper_client_port`: (default: 2181)
 - `zookeeper_connection_port`: port de connexion à zookeeper (default:2888)
 - `zookeeper_election_port`: port pour les élections du cluster (default:3888)
 - `zookeeper_datadir`: data directory pour zookeeper (default: /data/zookeeper/)
