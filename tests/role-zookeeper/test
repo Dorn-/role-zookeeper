@@ -1,6 +1,11 @@
 #!/bin/bash
 # -*- bash -*-
 
+function ansible_fallback() {
+  # Install a specific version of Ansible
+  [[ -n $test_ansible_version ]] && install_ansible ${test_ansible_version}
+}
+
 # Accès au DSL RoleSpec
 . "${ROLESPEC_LIB}/main"
 . "${ROLESPEC_TEST}/defaults.conf"
@@ -13,10 +18,17 @@ else
 fi
 
 # Prérequis
-
 ## Installation de la version spécifiée d'ansible
 ## Voir defaults.conf
-install_ansible ${test_ansible_version}
+
+# Use preinstalled version of Ansible
+if [ -d /usr/local/share/virtualenvs ]; then
+  export WORKON_HOME=/usr/local/share/virtualenvs
+  source /usr/bin/virtualenvwrapper.sh
+  workon ${test_ansible_version} || ansible_fallback
+else
+  ansible_fallback
+fi
 
 ## Installation des dépendances
 [ -e requirements.yml ] && ansible-galaxy install -r requirements.yml

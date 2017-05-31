@@ -6,9 +6,11 @@
 # ROLE_NAME: name of role to test
 # BOX_IMAGE: image for box
 # BOX_MEMORY: how much memory do we need
+# BOX_NAME: image name
 
 ROLE_NAME  = "role-zookeeper"
-BOX_IMAGE  = "http://udp-proxy.fiducial.dom/centos/6.7/fiducial-centos-6.7.box"
+BOX_IMAGE  = "http://udp-proxy.fiducial.dom/centos/centos73.json"
+BOX_NAME   = "CentOS/7.3"
 BOX_MEMORY = 512
 
 ####
@@ -27,7 +29,8 @@ cd ansible-utils && test/role-specs.sh --install #{ROLE_NAME}
 SCRIPT
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "#{BOX_IMAGE}"
+  config.vm.box = "#{BOX_NAME}"
+  config.vm.hostname = "#{ROLE_NAME}"
 
   private_key = $key_search.select{ |x| File.exists?(File.join(Dir.home, ".ssh", x)) }.first
   private_key = File.join(Dir.home, ".ssh", private_key)
@@ -41,6 +44,7 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v|
     v.name   = "#{ROLE_NAME}"
     v.memory = "#{BOX_MEMORY}"
+    v.linked_clone = true
   end
 
   config.vm.provision(:shell, :inline => "mkdir -p /root/.ssh && echo '#{private_key}' > /root/.ssh/id_rsa && chmod 400 /root/.ssh/id_rsa")
