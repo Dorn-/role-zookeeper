@@ -1,2 +1,6 @@
-- include: check_vars.yml tags=zookeeper
-- include: zookeeper.yml tags=zookeeper
+- include: check_vars.yml
+  tags: ["zookeeper"]
+
+- include: zookeeper.yml
+  tags: ["zookeeper"]
+
