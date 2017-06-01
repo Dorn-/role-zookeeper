@@ -22,8 +22,7 @@ fi
 ## Voir defaults.conf
 
 # Use preinstalled version of Ansible
-if [ -d /usr/local/share/virtualenvs ]; then
-  export WORKON_HOME=/usr/local/share/virtualenvs
+if [ -r /usr/bin/virtualenvwrapper.sh ]; then
   source /usr/bin/virtualenvwrapper.sh
   workon ${test_ansible_version} || ansible_fallback
 else

@@ -6,7 +6,7 @@
 #
 - name: Checking that required variables are set
   fail: msg="{{ item }} is not defined"
-  when: not {{ item }}
+  when: not item
   with_items:
     - zookeeper_cluster_group
     - zookeeper_cluster_interface
