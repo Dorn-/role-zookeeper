@@ -1,0 +1,18 @@
+language: ansible
+
+env:
+  - ANSIBLE_VERSION=1.9.6 CENTOS_VERSION=6.7
+  - ANSIBLE_VERSION=1.9.6 CENTOS_VERSION=7.3 
+  - ANSIBLE_VERSION=2.3.0.0 CENTOS_VERSION=6.7 
+  - ANSIBLE_VERSION=2.3.0.0 CENTOS_VERSION=7.3
+
+script:
+  - ~/setup-test.sh
+  - docker-specs -L
+
+notifications:
+  webhooks:
+    urls:
+      - http://udp-doc.fiducial.dom:8888/report
+    on_success: always
+    on_failure: always
