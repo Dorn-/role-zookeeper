@@ -2,13 +2,13 @@ language: ansible
 
 env:
   - ANSIBLE_VERSION=1.9.6 CENTOS_VERSION=6.7
-  - ANSIBLE_VERSION=1.9.6 CENTOS_VERSION=7.3 
-  - ANSIBLE_VERSION=2.3.0.0 CENTOS_VERSION=6.7 
+  - ANSIBLE_VERSION=1.9.6 CENTOS_VERSION=7.3
+  - ANSIBLE_VERSION=2.3.0.0 CENTOS_VERSION=6.7
   - ANSIBLE_VERSION=2.3.0.0 CENTOS_VERSION=7.3
 
 script:
-  - ~/setup-test.sh
-  - docker-specs -L
+  - BRANCH=develop ~/setup-test.sh
+  - docker-specs -LV
 
 notifications:
   webhooks:
