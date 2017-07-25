@@ -1,8 +1,4 @@
 ---
-
-dependencies:
-  - "git+ssh://git@github.fiducial.dom/SIINFRA/role-java.git,,role-java"
-
 galaxy_info:
   author: Michel Blanc
   company: Fiducial / SIWEB
@@ -15,3 +11,5 @@ galaxy_info:
     - all
   categories:
   - clustering
+
+dependencies: []
