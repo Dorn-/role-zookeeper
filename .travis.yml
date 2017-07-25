@@ -7,7 +7,7 @@ env:
   - ANSIBLE_VERSION=2.3.0.0 CENTOS_VERSION=7.3
 
 script:
-  - BRANCH=develop ~/setup-test.sh
+  - ~/setup-test.sh
   - docker-specs -LV
 
 notifications:
