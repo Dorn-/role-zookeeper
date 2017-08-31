@@ -1,17 +1,18 @@
 ---
-
-dependencies:
-  - "git+ssh://git@github.fiducial.dom/SIINFRA/role-java.git,,role-java"
-
 galaxy_info:
-  author: Michel Blanc
+  author:
+    - Flavien Chantelot
+    - Marc-Antoine Deschodt
+    - Michel Blanc
+  description: role-zookeeper
   company: Fiducial / SIWEB
-  description: Role zookeeper
   license: MIT
-  min_ansible_version: 1.9.4
+  min_ansible_version: 1.9.6
   platforms:
-  - name: RedHat
+  - name: RHEL
     versions:
-    - all
+    - 6.7
+    - 7.3
   categories:
   - clustering
+dependencies: []

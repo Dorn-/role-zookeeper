@@ -23,7 +23,7 @@
 *No comment*
 
 ## Changelog
-[1.0.4](CHANGELOG.md)
+[2.0.0](CHANGELOG.md)
 
 ## Notes/Examples
 Role d'installation de Zookeeper.

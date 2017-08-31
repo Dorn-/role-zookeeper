@@ -1,6 +1,8 @@
 # Changelog
 [Full Changelog](https://github.fiducial.dom/SIINFRA/role-zookeeper/releases)
 
+- [2.0.0](https://github.fiducial.dom/SIINFRA/role-zookeeper/compare/1.0.4...2.0.0) (31/08/2017)
+    - Add Ansible 2 & RHEL 7 compatibility
 - [1.0.4](https://github.fiducial.dom/SIINFRA/role-zookeeper/compare/1.0.3...1.0.4) (31/05/2017)
     - Test changes, rh7.3 support
 - [1.0.3](https://github.fiducial.dom/SIINFRA/role-zookeeper/compare/1.0.2...1.0.3) (16/02/2016)

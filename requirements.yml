@@ -1,3 +1,1 @@
-# - src: git+ssh://git@github.fiducial.dom/SIINFRA/role-somerole.git
-# - src: git+ssh://git@github.fiducial.dom/SIINFRA/role-somerole.git
 - src: git+ssh://git@github.fiducial.dom/SIINFRA/role-java.git
