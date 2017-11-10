@@ -4,5 +4,5 @@ zookeeper_client_port: 2181
 zookeeper_connection_port: 2888
 zookeeper_election_port: 3888
 zookeeper_cluster_interface: false
-
+zookeeper_download_url: http://apache.crihan.fr/dist/zookeeper/zookeeper-3.4.11/zookeeper-3.4.11.tar.gz
 
